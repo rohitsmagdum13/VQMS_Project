@@ -36,5 +36,6 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 claude/
+.claude/
 tasks/
 CLAUDE.md
