@@ -1,0 +1,26 @@
+Contract_ID__c,Account.Vendor_ID__c,StartDate,EndDate,Status,Payment_Terms__c,Contract_Value__c,SLA_Response_Hours__c,SLA_Resolution_Days__c,Late_Penalty__c,Review_Frequency__c,Description
+CNT-V-001-2025,V-001,2025-05-01,2026-05-01,Draft,Net-45,5000000,4,2,1.5% per month,Quarterly,Standard terms for Raw Materials category vendor
+CNT-V-002-2025,V-002,2025-05-01,2026-05-01,Draft,Net-60,10800000,8,5,None,Annual,Standard terms for IT Services category vendor
+CNT-V-003-2025,V-003,2025-01-01,2026-01-01,Draft,Net-30,40500000,2,1,1.5% per month,Quarterly,Standard terms for Logistics category vendor
+CNT-V-004-2025,V-004,2025-01-01,2026-01-01,Draft,Net-15,20400000,8,5,None,Annual,Standard terms for Facilities category vendor
+CNT-V-005-2025,V-005,2025-05-01,2026-05-01,Draft,Net-30,19900000,8,5,None,Annual,Standard terms for Professional Services category vendor
+CNT-V-006-2025,V-006,2025-02-01,2026-02-01,Draft,Net-15,32100000,8,5,None,Annual,Standard terms for Office Supplies category vendor
+CNT-V-007-2025,V-007,2025-05-01,2026-05-01,Draft,Net-30,24600000,8,5,None,Annual,Standard terms for Manufacturing category vendor
+CNT-V-008-2025,V-008,2025-03-01,2026-03-01,Draft,Net-30,44100000,8,5,None,Annual,Standard terms for Consulting category vendor
+CNT-V-009-2025,V-009,2025-02-01,2026-02-01,Draft,Net-30,21500000,2,1,1.5% per month,Quarterly,Standard terms for Telecom category vendor
+CNT-V-010-2025,V-010,2025-03-01,2026-03-01,Draft,Net-60,45800000,8,5,None,Annual,Standard terms for Security category vendor
+CNT-V-011-2025,V-011,2025-01-01,2026-01-01,Draft,Net-45,21200000,8,5,None,Annual,Standard terms for Raw Materials category vendor
+CNT-V-012-2025,V-012,2025-02-01,2026-02-01,Draft,Net-30,8100000,4,2,1.5% per month,Quarterly,Standard terms for IT Services category vendor
+CNT-V-013-2025,V-013,2025-03-01,2026-03-01,Draft,Net-60,22900000,8,5,None,Annual,Standard terms for Logistics category vendor
+CNT-V-014-2025,V-014,2025-03-01,2026-03-01,Draft,Net-30,8000000,8,5,None,Annual,Standard terms for Facilities category vendor
+CNT-V-015-2025,V-015,2025-02-01,2026-02-01,Draft,Net-15,45000000,4,2,1.5% per month,Quarterly,Standard terms for Professional Services category vendor
+CNT-V-016-2025,V-016,2025-04-01,2026-04-01,Draft,Net-45,31500000,4,2,1.5% per month,Quarterly,Standard terms for Office Supplies category vendor
+CNT-V-017-2025,V-017,2025-05-01,2026-05-01,Draft,Net-60,24900000,24,7,None,Annual,Standard terms for Manufacturing category vendor
+CNT-V-018-2025,V-018,2025-06-01,2026-06-01,Draft,Net-15,35900000,2,1,1.5% per month,Quarterly,Standard terms for Consulting category vendor
+CNT-V-019-2025,V-019,2025-03-01,2026-03-01,Draft,Net-30,6700000,8,5,None,Annual,Standard terms for Telecom category vendor
+CNT-V-020-2025,V-020,2025-05-01,2026-05-01,Draft,Net-45,1100000,4,2,1.5% per month,Quarterly,Standard terms for Security category vendor
+CNT-V-021-2025,V-021,2025-06-01,2026-06-01,Draft,Net-60,40000000,8,5,None,Annual,Standard terms for Raw Materials category vendor
+CNT-V-022-2025,V-022,2025-05-01,2026-05-01,Draft,Net-30,44000000,4,2,1.5% per month,Quarterly,Standard terms for IT Services category vendor
+CNT-V-023-2025,V-023,2025-01-01,2026-01-01,Draft,Net-30,20100000,8,5,None,Annual,Standard terms for Logistics category vendor
+CNT-V-024-2025,V-024,2025-06-01,2026-06-01,Draft,Net-60,17500000,2,1,1.5% per month,Quarterly,Standard terms for Facilities category vendor
+CNT-V-025-2025,V-025,2025-05-01,2026-05-01,Draft,Net-30,45900000,4,2,1.5% per month,Quarterly,Standard terms for Professional Services category vendor

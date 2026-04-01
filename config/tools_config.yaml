@@ -1,0 +1,38 @@
+# Tools Configuration for VQMS
+# Defines external tools that agents can call
+
+tools:
+  salesforce_lookup:
+    description: "Look up vendor in Salesforce CRM"
+    adapter: "src.adapters.salesforce"
+    max_runtime_ms: 5000
+    scopes_required:
+      - "salesforce:read"
+
+  servicenow_create_ticket:
+    description: "Create a ticket in ServiceNow"
+    adapter: "src.adapters.servicenow"
+    max_runtime_ms: 10000
+    scopes_required:
+      - "servicenow:write"
+
+  servicenow_update_ticket:
+    description: "Update an existing ServiceNow ticket"
+    adapter: "src.adapters.servicenow"
+    max_runtime_ms: 10000
+    scopes_required:
+      - "servicenow:write"
+
+  graph_api_send_email:
+    description: "Send an email via Microsoft Graph API"
+    adapter: "src.adapters.graph_api"
+    max_runtime_ms: 10000
+    scopes_required:
+      - "graph:mail.send"
+
+  s3_upload:
+    description: "Upload a file to S3"
+    adapter: "src.storage.s3_client"
+    max_runtime_ms: 15000
+    scopes_required:
+      - "s3:write"

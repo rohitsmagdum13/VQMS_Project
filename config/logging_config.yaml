@@ -1,0 +1,23 @@
+# Logging Configuration for VQMS
+# Structured JSON logging via structlog
+
+logging:
+  level: DEBUG  # DEBUG in dev, INFO in production
+  format: json  # Always JSON for structured log aggregation
+  output: stdout
+
+  # Fields included in every log entry
+  required_fields:
+    - correlation_id
+    - timestamp
+    - level
+    - module
+
+  # Fields to NEVER log (security)
+  redacted_fields:
+    - password
+    - secret
+    - token
+    - api_key
+    - credit_card
+    - ssn

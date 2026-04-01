@@ -1,0 +1,24 @@
+# Agent Configuration for VQMS
+# Defines the three AI agents and their roles in the pipeline
+
+agents:
+  email_analysis:
+    name: "Email Analysis Agent"
+    description: "Reads incoming emails and extracts intent, entities, urgency, sentiment, and confidence score"
+    model: "primary"  # References bedrock.primary in model_config.yaml
+    prompt_template: "prompts/email_analysis/v1.jinja"
+    confidence_threshold: 0.75  # Below this, route to human review
+
+  communication_drafting:
+    name: "Communication Drafting Agent"
+    description: "Writes response emails to vendors with ticket numbers, SLA promises, and next steps"
+    model: "primary"
+    prompt_template: "prompts/communication_drafting/v1.jinja"
+
+  orchestration:
+    name: "Workflow Orchestration Agent"
+    description: "Decides what happens next: auto, human review, update ticket, reopen, or escalate"
+    model: "primary"
+    prompt_template: "prompts/orchestration/v1.jinja"
+    confidence_threshold: 0.75
+    max_hops: 4

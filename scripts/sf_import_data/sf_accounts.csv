@@ -1,0 +1,26 @@
+Vendor_ID__c,Name,Website,Vendor_Tier__c,Category__c,Payment_Terms__c,AnnualRevenue,SLA_Response_Hours__c,SLA_Resolution_Days__c,Vendor_Status__c,Onboarded_Date__c,BillingCity,BillingState,BillingCountry
+V-001,Acme Industrial Supplies,https://acmeindustrial.com,GOLD,Raw Materials,Net-45,5000000,4,2,ACTIVE,2022-02-04,Pune,Maharashtra,India
+V-002,TechNova Solutions,https://technova.io,SILVER,IT Services,Net-60,10800000,8,5,ACTIVE,2022-12-13,Mumbai,Maharashtra,India
+V-003,SwiftLog Freight,https://swiftlogfreight.com,PLATINUM,Logistics,Net-30,40500000,2,1,ACTIVE,2020-08-15,Bangalore,Karnataka,India
+V-004,GreenBuild Facilities,https://greenbuild.co.in,SILVER,Facilities,Net-15,20400000,8,5,ACTIVE,2020-07-23,Pune,Maharashtra,India
+V-005,DataPrime Analytics,https://dataprime.com,SILVER,Professional Services,Net-30,19900000,8,5,ACTIVE,2020-12-28,Mumbai,Maharashtra,India
+V-006,OfficeMart India,https://officemart.in,SILVER,Office Supplies,Net-15,32100000,8,5,ACTIVE,2022-07-24,Bangalore,Karnataka,India
+V-007,Precision Engineers Ltd,https://precisioneng.com,SILVER,Manufacturing,Net-30,24600000,8,5,ACTIVE,2021-02-16,Pune,Maharashtra,India
+V-008,Catalyst Consulting,https://catalystconsult.com,SILVER,Consulting,Net-30,44100000,8,5,ACTIVE,2019-04-25,Mumbai,Maharashtra,India
+V-009,NetConnect Telecom,https://netconnect.co.in,PLATINUM,Telecom,Net-30,21500000,2,1,ACTIVE,2020-07-02,Bangalore,Karnataka,India
+V-010,SecureGuard Services,https://secureguard.in,SILVER,Security,Net-60,45800000,8,5,ACTIVE,2023-01-10,Pune,Maharashtra,India
+V-011,SteelCraft Industries,https://steelcraft.com,SILVER,Raw Materials,Net-45,21200000,8,5,ACTIVE,2022-08-09,Mumbai,Maharashtra,India
+V-012,CloudWave Technologies,https://cloudwave.io,GOLD,IT Services,Net-30,8100000,4,2,ACTIVE,2020-05-20,Bangalore,Karnataka,India
+V-013,RapidShip Logistics,https://rapidship.in,SILVER,Logistics,Net-60,22900000,8,5,ACTIVE,2022-04-10,Pune,Maharashtra,India
+V-014,CleanSpace Facilities,https://cleanspace.co.in,SILVER,Facilities,Net-30,8000000,8,5,ACTIVE,2021-11-09,Mumbai,Maharashtra,India
+V-015,InsightPro Research,https://insightpro.com,GOLD,Professional Services,Net-15,45000000,4,2,ACTIVE,2019-08-13,Bangalore,Karnataka,India
+V-016,BulkSupply Traders,https://bulksupply.in,GOLD,Office Supplies,Net-45,31500000,4,2,ACTIVE,2019-05-11,Pune,Maharashtra,India
+V-017,MetalWorks Fabrication,https://metalworks.com,BRONZE,Manufacturing,Net-60,24900000,24,7,ACTIVE,2021-12-19,Mumbai,Maharashtra,India
+V-018,StratEdge Advisors,https://stratedge.com,PLATINUM,Consulting,Net-15,35900000,2,1,ACTIVE,2022-01-04,Bangalore,Karnataka,India
+V-019,FiberNet Communications,https://fibernet.co.in,SILVER,Telecom,Net-30,6700000,8,5,ACTIVE,2020-08-24,Pune,Maharashtra,India
+V-020,ShieldSafe Security,https://shieldsafe.in,GOLD,Security,Net-45,1100000,4,2,ACTIVE,2023-01-18,Mumbai,Maharashtra,India
+V-021,ChemSource Pvt Ltd,https://chemsource.com,SILVER,Raw Materials,Net-60,40000000,8,5,ACTIVE,2020-01-01,Bangalore,Karnataka,India
+V-022,ByteForge Software,https://byteforge.io,GOLD,IT Services,Net-30,44000000,4,2,ACTIVE,2022-08-01,Pune,Maharashtra,India
+V-023,TransGlobal Shipping,https://transglobal.com,SILVER,Logistics,Net-30,20100000,8,5,ACTIVE,2019-11-27,Mumbai,Maharashtra,India
+V-024,BrightClean Services,https://brightclean.in,PLATINUM,Facilities,Net-60,17500000,2,1,ACTIVE,2021-09-27,Bangalore,Karnataka,India
+V-025,Pinnacle HR Solutions,https://pinnaclehr.com,GOLD,Professional Services,Net-30,45900000,4,2,ACTIVE,2020-09-21,Pune,Maharashtra,India

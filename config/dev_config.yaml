@@ -1,0 +1,17 @@
+# Development Environment Overrides
+# These settings override defaults for local development
+
+environment: development
+
+app:
+  debug: true
+  port: 8000
+
+logging:
+  level: DEBUG
+
+database:
+  ssl: false
+
+redis:
+  ssl: false

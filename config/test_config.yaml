@@ -1,0 +1,19 @@
+# Test Environment Overrides
+# These settings override defaults for running tests
+
+environment: test
+
+app:
+  debug: true
+  port: 8001
+
+logging:
+  level: WARNING  # Less noise during test runs
+
+database:
+  # Tests use moto mocks for AWS services
+  # PostgreSQL tests use a separate test database
+  database: vqms_test
+
+redis:
+  db: 1  # Separate Redis DB for tests to avoid conflicts

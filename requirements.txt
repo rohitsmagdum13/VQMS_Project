@@ -1,0 +1,107 @@
+# ============================================================
+# VQMS — Requirements File
+# Generated from pyproject.toml and pinned to installed versions
+# Source of truth for dependencies is pyproject.toml (uv)
+# This file exists for pip-based installs: pip install -r requirements.txt
+# ============================================================
+
+# ===========================
+# Core Framework
+# ===========================
+fastapi==0.135.2
+uvicorn[standard]==0.42.0
+pydantic==2.12.5
+pydantic-settings==2.13.1
+
+# ===========================
+# AI / LLM — Amazon Bedrock + LangChain/LangGraph
+# ===========================
+boto3==1.42.78
+botocore==1.42.78
+langchain==1.2.13
+langchain-aws==1.4.1
+langchain-community==0.4.1
+langgraph==1.1.3
+langsmith==0.7.22
+
+# ===========================
+# Database — PostgreSQL + pgvector
+# ===========================
+asyncpg==0.31.0
+psycopg2-binary==2.9.11
+pgvector==0.4.2
+sqlalchemy[asyncio]==2.0.48
+alembic==1.18.4
+
+# ===========================
+# Cache — Redis
+# ===========================
+redis[hiredis]==7.4.0
+
+# ===========================
+# API & Web — External Service Adapters
+# ===========================
+httpx==0.28.1
+aiohttp==3.13.3
+requests==2.33.0
+msal==1.35.1                          # Microsoft Graph API auth
+simple-salesforce==1.12.9             # Salesforce CRM adapter
+pysnow==0.7.17                        # ServiceNow ITSM adapter
+
+# ===========================
+# Email Parsing
+# ===========================
+python-multipart==0.0.22
+email-validator==2.3.0
+
+# ===========================
+# Observability & Logging
+# ===========================
+structlog==25.5.0
+opentelemetry-api==1.40.0
+opentelemetry-sdk==1.40.0
+opentelemetry-instrumentation-fastapi==0.61b0
+opentelemetry-exporter-otlp-proto-http==1.40.0
+aws-xray-sdk==2.15.0
+
+# ===========================
+# Templating & Prompts
+# ===========================
+jinja2==3.1.6
+
+# ===========================
+# Security & Compliance
+# ===========================
+cryptography==46.0.6
+python-jose[cryptography]==3.5.0
+
+# ===========================
+# Utilities
+# ===========================
+python-dotenv==1.2.2
+pyyaml==6.0.3
+tenacity==9.1.4                       # Retry with exponential backoff
+python-dateutil==2.9.0.post0
+orjson==3.11.7                        # Fast JSON serialization
+beautifulsoup4==4.14.3                # HTML parsing for email body extraction
+openpyxl==3.1.5                       # Excel file handling
+
+# ===========================
+# Testing
+# ===========================
+pytest==9.0.2
+pytest-asyncio==1.3.0
+pytest-cov==7.1.0
+pytest-mock==3.15.1
+moto[s3,sqs,events,stepfunctions]==5.1.22  # AWS service mocking
+ragas==0.4.3                          # RAG evaluation framework
+deepeval==3.9.3                       # LLM-as-a-judge evaluation
+
+# ===========================
+# Dev Tools
+# ===========================
+ruff==0.15.8
+mypy==1.19.1
+black==26.3.1
+isort==8.0.1
+pre-commit==4.5.1

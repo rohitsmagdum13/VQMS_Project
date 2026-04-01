@@ -1,0 +1,17 @@
+# Production Environment Overrides
+# These settings override defaults for production deployment
+
+environment: production
+
+app:
+  debug: false
+  port: 8000
+
+logging:
+  level: INFO
+
+database:
+  ssl: true
+
+redis:
+  ssl: true

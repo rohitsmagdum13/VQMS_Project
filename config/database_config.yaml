@@ -1,0 +1,28 @@
+# Database Configuration for VQMS
+# Values reference environment variables defined in .env
+# This file defines the structure; actual secrets come from .env
+
+postgresql:
+  host: ${POSTGRES_HOST}
+  port: ${POSTGRES_PORT}
+  database: ${POSTGRES_DB}
+  user: ${POSTGRES_USER}
+  password: ${POSTGRES_PASSWORD}
+  pool_min: ${POSTGRES_POOL_MIN}
+  pool_max: ${POSTGRES_POOL_MAX}
+  ssl: false  # Enable in production
+  timeout_seconds: 10
+
+pgvector:
+  dimensions: 1536  # Bedrock embedding model output size
+  hnsw_m: 16
+  hnsw_ef_construction: 64
+
+redis:
+  host: ${REDIS_HOST}
+  port: ${REDIS_PORT}
+  password: ${REDIS_PASSWORD}
+  db: 0
+  ssl: false  # Enable in production
+  key_prefix: "vqms:"
+  default_ttl_seconds: 3600

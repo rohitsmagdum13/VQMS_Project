@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for dir:*)",
+      "Bash(do touch:*)",
+      "Bash(done)",
+      "Bash(uv sync:*)",
+      "Bash(uv run:*)",
+      "Bash(grep -E \"\\\\.\\(md|txt|docx\\)$\")",
+      "Bash(pandoc /c/Users/ROHIT/Work/Office/Hex_Proj/VQMS_Project/docs/references/VQMS_Complete_Architecture_and_Flows.docx -t markdown)",
+      "Bash(python3 -c \"from docx import Document; doc = Document\\(''''/c/Users/ROHIT/Work/Office/Hex_Proj/VQMS_Project/docs/references/VQMS_Complete_Architecture_and_Flows.docx''''\\); [print\\(p.text\\) for p in doc.paragraphs]\")",
+      "Bash(. ./.venv/Scripts/activate)",
+      "Bash(python3 -c \"from docx import Document; doc = Document\\(''docs/references/VQMS_Complete_Architecture_and_Flows.docx''\\); [print\\(p.text\\) for p in doc.paragraphs[:150]]\")",
+      "Bash(unzip -q -c docs/references/VQMS_Complete_Architecture_and_Flows.docx word/document.xml)",
+      "Bash(python3:*)",
+      "Bash(python -c \":*)",
+      "mcp__Neon__list_projects",
+      "mcp__Neon__get_connection_string",
+      "mcp__Neon__run_sql",
+      "mcp__Neon__run_sql_transaction",
+      "Bash(LOG_LEVEL=INFO uv run python scripts/run_email_intake.py)",
+      "Bash(grep -v \"^$\")",
+      "Bash(uv add:*)",
+      "Bash(set PYTHONIOENCODING=utf-8)",
+      "Bash(python scripts/prepare_sf_import.py)",
+      "Bash(python scripts/sf_insert_via_api.py --dry-run)",
+      "Bash(pip install:*)",
+      "Bash(uv pip:*)"
+    ]
+  }
+}

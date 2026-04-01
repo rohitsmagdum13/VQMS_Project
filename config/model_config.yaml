@@ -1,0 +1,28 @@
+# LLM Model Configuration for VQMS
+# All LLM calls go through the Bedrock Integration Service
+
+bedrock:
+  # Primary model — used for all agent tasks
+  primary:
+    model_id: "anthropic.claude-3-5-sonnet-20241022-v2:0"
+    region: "us-east-1"
+    max_tokens: 4096
+    temperature: 0.1  # Low temperature for consistent, factual responses
+    max_retries: 3
+    timeout_seconds: 30
+
+  # Fallback model — used when primary is rate-limited or unavailable
+  fallback:
+    model_id: "anthropic.claude-3-haiku-20240307-v1:0"
+    region: "us-east-1"
+    max_tokens: 4096
+    temperature: 0.1
+    max_retries: 3
+    timeout_seconds: 30
+
+# Agent budget limits — per-invocation caps
+agent_budget:
+  max_tokens_in: 8000
+  max_tokens_out: 4096
+  currency_limit_usd: 0.50
+  max_hops: 4  # Maximum agent steps before forced termination
