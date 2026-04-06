@@ -71,7 +71,6 @@ dev = [
     "pytest-cov",
     "pytest-mock",
     "moto[s3,sqs,events,stepfunctions]",
-    "ragas",
     "deepeval",
 ]
 
