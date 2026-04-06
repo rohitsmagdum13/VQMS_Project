@@ -1,9 +1,13 @@
-"""Verify AWS RDS PostgreSQL connection.
+"""Verify AWS RDS PostgreSQL connection via SSH tunnel.
 
-Uses the existing POSTGRES_* variables from your .env file:
+Uses existing POSTGRES_* variables from .env, plus SSH tunnel variables:
 
     POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB,
     POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_SSLMODE
+
+    SSH_HOST        — Bastion/jump host public IP or hostname
+    SSH_USER        — SSH username (e.g., ec2-user, ubuntu)
+    SSH_KEY_PATH    — Path to your .pem private key file
 
 Run with: uv run python scripts/test_aws_postgres.py
 """
@@ -33,34 +37,87 @@ async def main() -> None:
     print("VQMS — AWS RDS PostgreSQL Connection Verification")
     print("=" * 60)
 
-    # Read connection details from .env (same variable names as Neon setup)
-    host = get_env_or_exit("POSTGRES_HOST")
-    port = int(os.getenv("POSTGRES_PORT", "5432"))
+    # Read PostgreSQL connection details from .env
+    rds_host = get_env_or_exit("POSTGRES_HOST")
+    rds_port = int(os.getenv("POSTGRES_PORT", "5432"))
     db = get_env_or_exit("POSTGRES_DB")
     user = get_env_or_exit("POSTGRES_USER")
     password = get_env_or_exit("POSTGRES_PASSWORD")
     ssl_mode = os.getenv("POSTGRES_SSLMODE", "require")
 
-    print(f"\nHost:     {host}")
-    print(f"Port:     {port}")
-    print(f"Database: {db}")
-    print(f"User:     {user}")
-    print(f"SSL:      {ssl_mode}")
+    # Read SSH tunnel details from .env
+    ssh_host = get_env_or_exit("SSH_HOST")
+    ssh_user = get_env_or_exit("SSH_USER")
+    ssh_key_path = get_env_or_exit("SSH_KEY_PATH")
+    ssh_port = int(os.getenv("SSH_PORT", "22"))
+
+    # Resolve ~ in key path
+    ssh_key_path = os.path.expanduser(ssh_key_path)
+
+    if not os.path.exists(ssh_key_path):
+        print(f"  ERROR: SSH key file not found: {ssh_key_path}")
+        sys.exit(1)
+
+    print(f"\nSSH Host:     {ssh_host}")
+    print(f"SSH User:     {ssh_user}")
+    print(f"SSH Key:      {ssh_key_path}")
+    print(f"RDS Host:     {rds_host}")
+    print(f"RDS Port:     {rds_port}")
+    print(f"Database:     {db}")
+    print(f"DB User:      {user}")
+    print(f"SSL:          {ssl_mode}")
     print("-" * 60)
+
+    # sshtunnel creates a local port that forwards to the private RDS
+    try:
+        from sshtunnel import SSHTunnelForwarder
+    except ImportError:
+        print("\n  ERROR: sshtunnel package not installed.")
+        print("  Run: uv add sshtunnel")
+        sys.exit(1)
 
     import asyncpg
 
     passed = 0
     failed = 0
     conn = None
+    tunnel = None
 
-    # ---- Test 1: Basic Connection ----
-    print("\n[TEST 1] Connecting to AWS RDS PostgreSQL...")
+    # ---- Test 0: SSH Tunnel ----
+    print("\n[TEST 0] Establishing SSH tunnel to bastion host...")
+    try:
+        tunnel = SSHTunnelForwarder(
+            (ssh_host, ssh_port),
+            ssh_username=ssh_user,
+            ssh_pkey=ssh_key_path,
+            remote_bind_address=(rds_host, rds_port),
+            local_bind_address=("127.0.0.1", 0),  # Auto-pick a free local port
+        )
+        tunnel.start()
+        local_port = tunnel.local_bind_port
+        print(f"  PASSED — SSH tunnel established.")
+        print(f"    Local tunnel: 127.0.0.1:{local_port} → {rds_host}:{rds_port}")
+        passed += 1
+    except Exception as e:
+        print(f"  FAILED — {e}")
+        print("\n  Troubleshooting:")
+        print("  - Check SSH_HOST, SSH_USER, SSH_KEY_PATH in .env")
+        print("  - Verify the bastion host security group allows SSH (port 22) from your IP")
+        print("  - Verify the .pem key file permissions and path are correct")
+        print("  - On Windows, try using forward slashes in SSH_KEY_PATH")
+        failed += 1
+        print(f"\n{'=' * 60}")
+        print(f"Results: {passed} passed, {failed} failed")
+        print("=" * 60)
+        return
+
+    # ---- Test 1: Basic Connection (through tunnel) ----
+    print("\n[TEST 1] Connecting to AWS RDS PostgreSQL through tunnel...")
     try:
         ssl_arg = ssl_mode if ssl_mode in ("require", "prefer", "verify-full") else None
         conn = await asyncpg.connect(
-            host=host,
-            port=port,
+            host="127.0.0.1",
+            port=local_port,
             database=db,
             user=user,
             password=password,
@@ -74,11 +131,12 @@ async def main() -> None:
     except Exception as e:
         print(f"  FAILED — {e}")
         print("\n  Troubleshooting:")
-        print("  - Verify POSTGRES_* variables in .env are correct")
-        print("  - Check RDS security group allows inbound on port 5432 from your IP")
-        print("  - Check RDS instance is publicly accessible (or you're in the same VPC)")
-        print("  - Try setting AWS_POSTGRES_SSL=prefer if SSL handshake fails")
+        print("  - Verify POSTGRES_USER and POSTGRES_PASSWORD in .env")
+        print("  - Check RDS security group allows inbound 5432 from bastion's private IP")
+        print("  - Try POSTGRES_SSLMODE=prefer if SSL handshake fails")
         failed += 1
+        if tunnel:
+            tunnel.stop()
         print(f"\n{'=' * 60}")
         print(f"Results: {passed} passed, {failed} failed")
         print("=" * 60)
@@ -91,11 +149,11 @@ async def main() -> None:
             "SELECT pg_size_pretty(pg_database_size(current_database()))"
         )
         current_db = await conn.fetchval("SELECT current_database()")
-        current_user = await conn.fetchval("SELECT current_user")
+        current_user_val = await conn.fetchval("SELECT current_user")
         max_conns = await conn.fetchval("SHOW max_connections")
         print(f"  PASSED — Server info retrieved.")
         print(f"    Database:        {current_db}")
-        print(f"    Connected as:    {current_user}")
+        print(f"    Connected as:    {current_user_val}")
         print(f"    Database size:   {db_size}")
         print(f"    Max connections: {max_conns}")
         passed += 1
@@ -188,17 +246,14 @@ async def main() -> None:
     # ---- Test 6: Write/Read test ----
     print("\n[TEST 6] Testing write/read capability...")
     try:
-        # Create a temporary test table
         await conn.execute(
             "CREATE TABLE IF NOT EXISTS public._vqms_conn_test "
             "(id SERIAL PRIMARY KEY, value TEXT, created_at TIMESTAMPTZ DEFAULT NOW())"
         )
-        # Insert a test row
         await conn.execute(
             "INSERT INTO public._vqms_conn_test (value) VALUES ($1)",
             "connection-test",
         )
-        # Read it back
         row = await conn.fetchrow(
             "SELECT value FROM public._vqms_conn_test WHERE value = $1",
             "connection-test",
@@ -209,11 +264,9 @@ async def main() -> None:
         else:
             print("  FAILED — Could not read back written row.")
             failed += 1
-        # Clean up
         await conn.execute("DROP TABLE IF EXISTS public._vqms_conn_test")
     except Exception as e:
         print(f"  FAILED — {e}")
-        # Try cleanup even on failure
         try:
             await conn.execute("DROP TABLE IF EXISTS public._vqms_conn_test")
         except Exception:
@@ -241,8 +294,12 @@ async def main() -> None:
         print(f"  FAILED — {e}")
         failed += 1
 
+    # ---- Cleanup ----
     if conn:
         await conn.close()
+    if tunnel:
+        tunnel.stop()
+        print("\n  SSH tunnel closed.")
 
     # ---- Summary ----
     total = passed + failed
