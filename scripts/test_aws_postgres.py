@@ -68,35 +68,80 @@ async def main() -> None:
     print(f"SSL:          {ssl_mode}")
     print("-" * 60)
 
-    # sshtunnel creates a local port that forwards to the private RDS
-    try:
-        from sshtunnel import SSHTunnelForwarder
-    except ImportError:
-        print("\n  ERROR: sshtunnel package not installed.")
-        print("  Run: uv add sshtunnel")
-        sys.exit(1)
-
     import asyncpg
+    import paramiko
+    import socket
+    import threading
 
     passed = 0
     failed = 0
     conn = None
-    tunnel = None
+    ssh_client = None
+    local_server = None
 
-    # ---- Test 0: SSH Tunnel ----
+    # ---- Test 0: SSH Tunnel (using paramiko directly) ----
     print("\n[TEST 0] Establishing SSH tunnel to bastion host...")
     try:
-        tunnel = SSHTunnelForwarder(
-            (ssh_host, ssh_port),
-            ssh_username=ssh_user,
-            ssh_pkey=ssh_key_path,
-            remote_bind_address=(rds_host, rds_port),
-            local_bind_address=("127.0.0.1", 0),  # Auto-pick a free local port
+        # Connect to bastion via SSH
+        ssh_client = paramiko.SSHClient()
+        ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh_client.connect(
+            hostname=ssh_host,
+            port=ssh_port,
+            username=ssh_user,
+            key_filename=ssh_key_path,
+            timeout=15,
         )
-        tunnel.start()
-        local_port = tunnel.local_bind_port
+
+        # Open a port-forwarding channel to RDS through the bastion
+        transport = ssh_client.get_transport()
+
+        # Create a local socket that forwards to RDS via SSH
+        local_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        local_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        local_server.bind(("127.0.0.1", 0))
+        local_server.listen(1)
+        local_port = local_server.getsockname()[1]
+
+        # Forward connections in a background thread
+        def forward_tunnel():
+            while True:
+                try:
+                    client_sock, _ = local_server.accept()
+                except OSError:
+                    break
+                try:
+                    channel = transport.open_channel(
+                        "direct-tcpip",
+                        (rds_host, rds_port),
+                        client_sock.getpeername(),
+                    )
+                except Exception:
+                    client_sock.close()
+                    break
+                # Shuttle data between local socket and SSH channel
+                while True:
+                    r_list = [client_sock, channel]
+                    import select
+                    readable, _, _ = select.select(r_list, [], [], 1.0)
+                    if channel in readable:
+                        data = channel.recv(4096)
+                        if not data:
+                            break
+                        client_sock.sendall(data)
+                    if client_sock in readable:
+                        data = client_sock.recv(4096)
+                        if not data:
+                            break
+                        channel.sendall(data)
+                channel.close()
+                client_sock.close()
+
+        tunnel_thread = threading.Thread(target=forward_tunnel, daemon=True)
+        tunnel_thread.start()
+
         print(f"  PASSED — SSH tunnel established.")
-        print(f"    Local tunnel: 127.0.0.1:{local_port} → {rds_host}:{rds_port}")
+        print(f"    Local tunnel: 127.0.0.1:{local_port} -> {rds_host}:{rds_port}")
         passed += 1
     except Exception as e:
         print(f"  FAILED — {e}")
@@ -135,8 +180,10 @@ async def main() -> None:
         print("  - Check RDS security group allows inbound 5432 from bastion's private IP")
         print("  - Try POSTGRES_SSLMODE=prefer if SSL handshake fails")
         failed += 1
-        if tunnel:
-            tunnel.stop()
+        if local_server:
+            local_server.close()
+        if ssh_client:
+            ssh_client.close()
         print(f"\n{'=' * 60}")
         print(f"Results: {passed} passed, {failed} failed")
         print("=" * 60)
@@ -297,8 +344,10 @@ async def main() -> None:
     # ---- Cleanup ----
     if conn:
         await conn.close()
-    if tunnel:
-        tunnel.stop()
+    if local_server:
+        local_server.close()
+    if ssh_client:
+        ssh_client.close()
         print("\n  SSH tunnel closed.")
 
     # ---- Summary ----
