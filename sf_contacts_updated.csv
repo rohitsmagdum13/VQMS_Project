@@ -1,0 +1,51 @@
+Name,Contact_ID__c,Account Name,Account.Vendor_ID__c,FirstName,LastName,Email,Phone,Title,Contact_Type__c,Is_Active__c
+Sneha Singh,VC-001,Acme Industrial Supplies,V-001,Sneha,Singh,sneha.singh@acmeindustrial.com,+91-9436779490,Accounts Manager,PRIMARY,true
+Anita Kulkarni,VC-002,Acme Industrial Supplies,V-001,Anita,Kulkarni,anita.kulkarni@acmeindustrial.com,+91-7297265480,Director,SECONDARY,true
+Dinesh Chauhan,VC-003,TechNova Solutions,V-002,Dinesh,Chauhan,dinesh.chauhan@technova.io,+91-7540137296,Accounts Manager,PRIMARY,true
+Arjun Shah,VC-004,TechNova Solutions,V-002,Arjun,Shah,arjun.shah@technova.io,+91-9361388464,Director,SECONDARY,true
+Deepak Reddy,VC-005,SwiftLog Freight,V-003,Deepak,Reddy,deepak.reddy@swiftlogfreight.com,+91-9266341635,Accounts Manager,PRIMARY,true
+Pankaj Das,VC-006,SwiftLog Freight,V-003,Pankaj,Das,pankaj.das@swiftlogfreight.com,+91-9316259067,Operations Head,SECONDARY,true
+Dinesh Malhotra,VC-007,GreenBuild Facilities,V-004,Dinesh,Malhotra,dinesh.malhotra@greenbuild.co.in,+91-9962958940,Accounts Manager,PRIMARY,true
+Rohit Kapoor,VC-008,GreenBuild Facilities,V-004,Rohit,Kapoor,rohit.kapoor@greenbuild.co.in,+91-8713658874,Procurement Lead,SECONDARY,true
+Harish Tiwari,VC-009,DataPrime Analytics,V-005,Harish,Tiwari,harish.tiwari@dataprime.com,+91-8603828849,Accounts Manager,PRIMARY,true
+Ajay Bhat,VC-010,DataPrime Analytics,V-005,Ajay,Bhat,ajay.bhat@dataprime.com,+91-7519709079,Director,SECONDARY,true
+Pooja Singh,VC-011,OfficeMart India,V-006,Pooja,Singh,pooja.singh@officemart.in,+91-7274989148,Accounts Manager,PRIMARY,true
+Swati Sharma,VC-012,OfficeMart India,V-006,Swati,Sharma,swati.sharma@officemart.in,+91-9527331058,Operations Head,SECONDARY,true
+Manish Sharma,VC-013,Precision Engineers Ltd,V-007,Manish,Sharma,manish.sharma@precisioneng.com,+91-7304912982,Accounts Manager,PRIMARY,true
+Sapna Tiwari,VC-014,Precision Engineers Ltd,V-007,Sapna,Tiwari,sapna.tiwari@precisioneng.com,+91-7983297492,Sales Manager,SECONDARY,true
+Vikram Verma,VC-015,Catalyst Consulting,V-008,Vikram,Verma,vikram.verma@catalystconsult.com,+91-8419179580,Accounts Manager,PRIMARY,true
+Vikram Bhat,VC-016,Catalyst Consulting,V-008,Vikram,Bhat,vikram.bhat@catalystconsult.com,+91-8196050747,Operations Head,SECONDARY,true
+Harish Agarwal,VC-017,NetConnect Telecom,V-009,Harish,Agarwal,harish.agarwal@netconnect.co.in,+91-7920140090,Accounts Manager,PRIMARY,true
+Sandeep Patel,VC-018,NetConnect Telecom,V-009,Sandeep,Patel,sandeep.patel@netconnect.co.in,+91-8043665192,Director,SECONDARY,true
+Kiran Das,VC-019,SecureGuard Services,V-010,Kiran,Das,kiran.das@secureguard.in,+91-7817804383,Accounts Manager,PRIMARY,true
+Suresh Deshmukh,VC-020,SecureGuard Services,V-010,Suresh,Deshmukh,suresh.deshmukh@secureguard.in,+91-8521696479,Director,SECONDARY,true
+Shweta Das,VC-021,SteelCraft Industries,V-011,Shweta,Das,shweta.das@steelcraft.com,+91-9005855667,Accounts Manager,PRIMARY,true
+Yogesh Verma,VC-022,SteelCraft Industries,V-011,Yogesh,Verma,yogesh.verma@steelcraft.com,+91-7260329455,Sales Manager,SECONDARY,true
+Anjali Malhotra,VC-023,CloudWave Technologies,V-012,Anjali,Malhotra,anjali.malhotra@cloudwave.io,+91-8457293575,Accounts Manager,PRIMARY,true
+Suresh Singh,VC-024,CloudWave Technologies,V-012,Suresh,Singh,suresh.singh@cloudwave.io,+91-7816941039,Operations Head,SECONDARY,true
+Sandeep Mishra,VC-025,RapidShip Logistics,V-013,Sandeep,Mishra,sandeep.mishra@rapidship.in,+91-7602078388,Accounts Manager,PRIMARY,true
+Shweta Joshi,VC-026,RapidShip Logistics,V-013,Shweta,Joshi,shweta.joshi@rapidship.in,+91-8986972437,Procurement Lead,SECONDARY,true
+Pooja Kulkarni,VC-027,CleanSpace Facilities,V-014,Pooja,Kulkarni,pooja.kulkarni@cleanspace.co.in,+91-8903232052,Accounts Manager,PRIMARY,true
+Jyoti Deshmukh,VC-028,CleanSpace Facilities,V-014,Jyoti,Deshmukh,jyoti.deshmukh@cleanspace.co.in,+91-9800940984,Sales Manager,SECONDARY,true
+Sandeep Sharma,VC-029,InsightPro Research,V-015,Sandeep,Sharma,sandeep.sharma@insightpro.com,+91-7400560567,Accounts Manager,PRIMARY,true
+Dinesh Singh,VC-030,InsightPro Research,V-015,Dinesh,Singh,dinesh.singh@insightpro.com,+91-8745535098,Operations Head,SECONDARY,true
+Ritu Agarwal,VC-031,BulkSupply Traders,V-016,Ritu,Agarwal,ritu.agarwal@bulksupply.in,+91-7918037633,Accounts Manager,PRIMARY,true
+Anjali Verma,VC-032,BulkSupply Traders,V-016,Anjali,Verma,anjali.verma@bulksupply.in,+91-8627677155,Operations Head,SECONDARY,true
+Rajesh Rao,VC-033,MetalWorks Fabrication,V-017,Rajesh,Rao,rajesh.rao@metalworks.com,+91-8139038460,Accounts Manager,PRIMARY,true
+Nisha Nair,VC-034,MetalWorks Fabrication,V-017,Nisha,Nair,nisha.nair@metalworks.com,+91-9991837720,Director,SECONDARY,true
+Yogesh Chauhan,VC-035,StratEdge Advisors,V-018,Yogesh,Chauhan,yogesh.chauhan@stratedge.com,+91-9842715617,Accounts Manager,PRIMARY,true
+Sapna Agarwal,VC-036,StratEdge Advisors,V-018,Sapna,Agarwal,sapna.agarwal@stratedge.com,+91-7815605132,Operations Head,SECONDARY,true
+Ashok Gupta,VC-037,FiberNet Communications,V-019,Ashok,Gupta,ashok.gupta@fibernet.co.in,+91-7251183830,Accounts Manager,PRIMARY,true
+Smita Malhotra,VC-038,FiberNet Communications,V-019,Smita,Malhotra,smita.malhotra@fibernet.co.in,+91-8346922426,Sales Manager,SECONDARY,true
+Sneha Verma,VC-039,ShieldSafe Security,V-020,Sneha,Verma,sneha.verma@shieldsafe.in,+91-9509023674,Accounts Manager,PRIMARY,true
+Kiran Bhat,VC-040,ShieldSafe Security,V-020,Kiran,Bhat,kiran.bhat@shieldsafe.in,+91-7244295904,Operations Head,SECONDARY,true
+Gaurav Kulkarni,VC-041,ChemSource Pvt Ltd,V-021,Gaurav,Kulkarni,gaurav.kulkarni@chemsource.com,+91-7798112150,Accounts Manager,PRIMARY,true
+Vikram Pandey,VC-042,ChemSource Pvt Ltd,V-021,Vikram,Pandey,vikram.pandey@chemsource.com,+91-9900015820,Sales Manager,SECONDARY,true
+Pooja Rao,VC-043,ByteForge Software,V-022,Pooja,Rao,pooja.rao@byteforge.io,+91-7514909066,Accounts Manager,PRIMARY,true
+Naveen Singh,VC-044,ByteForge Software,V-022,Naveen,Singh,naveen.singh@byteforge.io,+91-9660223333,Sales Manager,SECONDARY,true
+Anita Das,VC-045,TransGlobal Shipping,V-023,Anita,Das,anita.das@transglobal.com,+91-9823396242,Accounts Manager,PRIMARY,true
+Smita Thakur,VC-046,TransGlobal Shipping,V-023,Smita,Thakur,smita.thakur@transglobal.com,+91-8119980130,Procurement Lead,SECONDARY,true
+Neha Shah,VC-047,BrightClean Services,V-024,Neha,Shah,neha.shah@brightclean.in,+91-8349409434,Accounts Manager,PRIMARY,true
+Pooja Reddy,VC-048,BrightClean Services,V-024,Pooja,Reddy,pooja.reddy@brightclean.in,+91-7562117925,Director,SECONDARY,true
+Rekha Mishra,VC-049,Pinnacle HR Solutions,V-025,Rekha,Mishra,rekha.mishra@pinnaclehr.com,+91-8357970698,Accounts Manager,PRIMARY,true
+Dinesh Kulkarni,VC-050,Pinnacle HR Solutions,V-025,Dinesh,Kulkarni,dinesh.kulkarni@pinnaclehr.com,+91-8968321319,Sales Manager,SECONDARY,true
